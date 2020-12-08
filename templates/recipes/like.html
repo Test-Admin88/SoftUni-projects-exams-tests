@@ -1,0 +1,30 @@
+{% extends 'recipes/common/base.html' %}
+{% block site_content %}
+    <div class="container">
+        <h1>Like Recipe</h1>
+                <div class="items-container">
+                    <div class="item">
+                        <h2>{{ obj_recipe.title }}</h2>
+                        <img class="detail-img" src="{{ recipe.image_url}}" alt="recipe-image">
+                        <div class="time">
+                            <img src="/static/images/clock.png">
+                            <p>{{ recipe.time }}min</p>
+                        </div>
+                    </div>
+                        <h3>Ingredients</h3>
+                        <ul>
+                            {% for ingre in ingredients_list %}
+                                <li>{{ ingre }}</li>
+                            {% endfor %}
+                        </ul>
+                        <h3>How to prepare?</h3>
+                        <div class="recipe-info-full">
+                            {{ obj_recipe.description }}
+                        </div>
+                <div class="buttons-container">
+                    <a class="button edit" href="{% url 'details recipe' recipe.id %}">Like</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+<div>
+    {% if todo.is_done %}
+        <strong class="text-success">{{ todo.text|upper }}</strong> {# 9 filter |upper - result will be with upper #}
+    {% else %}
+        <strong class="text-danger">{{ todo.text|upper }}</strong>
+    {% endif %}
+    {{ todo.description }}
+</div>
+
+{##}
+{#{% load todo_details %}#}
+{##}
+{#<div>#}
+{#    {% todo_details todo=todo %} {# 10 this is the custom tag, it is used to return simple text - simple tag, with inclusion tag  #}
+{##}
+{#</div>#}

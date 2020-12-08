@@ -1,0 +1,50 @@
+{# 1 in index with extends - take everything from ''#}
+{#if we have bootstrap is in this, it will be in the others as well#}
+{#{% extends 'frameworks/shared/base.html' %}#}
+
+{#8 we can have sidebar that inherits base and extends functionality, this way  #}
+{% extends 'frameworks/shared/base_sidebar.html' %}
+
+{% load static %}
+{% load todos_filter %}
+{% load todo_details %}
+{% load bootstrap_form %}
+
+
+{#3 adding styles, next step create the css file, and add it here, DO NOT FORGET to load static   #}
+{% block styles %} <link rel="stylesheet" href="{% static 'frameworks/index.css' %}"> {% endblock %}
+
+{#2 change site title#}
+{% block site_title %} Home of my site {% endblock %}
+
+
+{# also for 8 to show sidebar #}
+{% block sidebar_content %}
+    <p>HELLLOOO !!! </p>
+{% endblock %}
+
+{# 1 you will change default block content message with it workds#}
+{#{% block site_content %}#}
+{% block content %} {# for example number 8 #}
+
+    {% bootstrap_form form=form method='post' action='my-action' %} {# 13 assign bootstr and form#}
+     <form action="{{ action }}" method="{{ method }}">
+        {% csrf_token %}  {# 13 #}
+        {{ form }}
+        <button>Submit</button>
+    </form>
+    <h1> Include: </h1>
+    <ul>
+
+{#    7 we can do this with partial and include it with WITH , we create the part of the block in partials#}
+        {% for todo_entry in todos|todos_filter:state %} {# 9 to do it with function - u first create the funct in templatetags, to use it like that u must use load todos_filter, :False u give params, if u use it with context change it to state - the key from the context #}
+{#            <li>{{ todo.text }} - {{ todo.is_done }}</li>#}
+            <li>
+                {% include 'frameworks/partials/todo-item.html' with todo=todo_entry %}
+{#                {% todo_details todo=todo_entry %} 11 it is either include or this not both and pure for for todo_entry in todos #}
+
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

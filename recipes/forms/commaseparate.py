@@ -2,8 +2,10 @@ from django import forms
 from django.core import validators
 from django.core.exceptions import ValidationError
 
+
 class MinLengthValidator(validators.MinLengthValidator):
     message = 'Ensure this value has at least %(limit_value)d elements (it has %(show_value)d).'
+
 
 class MaxLengthValidator(validators.MaxLengthValidator):
     message = 'Ensure this value has at most %(limit_value)d elements (it has %(show_value)d).'

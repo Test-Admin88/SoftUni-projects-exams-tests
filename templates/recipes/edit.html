@@ -1,0 +1,17 @@
+{% extends 'recipes/common/base.html' %}
+{% block site_content %}
+    <div class="container">
+        <h1>Edit Recipe</h1>
+        <div class="items-container">
+            <div class="item">
+                <form method="POST" action="{% url 'edit recipe' recipe.id%}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label>Current image</label>
+                    <img class="detail-img" src="{{ recipe.recipe_image.url }}" alt="recipe-image">
+                    {{ form }}
+                    <input type="submit" class="button edit" value="Edit">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

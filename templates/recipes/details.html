@@ -1,0 +1,64 @@
+{% extends 'recipes/common/base.html' %}
+{% block styles %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+{% endblock %}
+{% block site_content %}
+    <div class="container">
+        <h1>Recipe Details</h1>
+                <div class="items-container">
+                    <div class="item">
+                        <h2>{{ obj_recipe.title }}</h2>
+                        <img class="detail-img" src="{{ obj_recipe.recipe_image.url }}" alt="recipe-image">
+                        <div class="time">
+                            <img src="/static/images/clock.png" alt="clock image">
+                            <p>{{ obj_recipe.time }}min</p>
+                        </div>
+
+                    <div class="buttons-container">
+                        <a href="{% url 'like recipe' obj_recipe.id %}"> Liked {{ obj_recipe.likes_set.count }} <i class='fas fa-heart'></i>
+                        </a>
+                        <a href="{% url 'dislike recipe' obj_recipe.id %}"> Disliked {{ obj_recipe.dislike_set.count }} <i class='fas fa-heart'></i>
+                        </a>
+
+                    </div>
+
+                        <h3>Ingredients</h3>
+                        <ul>
+                            {% for ingre in ingredients_list %}
+                                <li>{{ ingre }}</li>
+                            {% endfor %}
+                        </ul>
+                        <h3>How to prepare?</h3>
+                        <div class="recipe-info-full">
+                            {{ obj_recipe.description }}
+                        </div>
+                <div class="buttons-container">
+                    <a class="button edit" href="{% url 'edit recipe' obj_recipe.id %}">Edit</a>
+                    <a class="button delete" href="{% url 'delete recipe' obj_recipe.id %}">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {# box comment outside the if #}
+    <div class="items-container">
+        <div class="item">Comments Section
+            {% if obj_recipe.comment_set.count > 0 %}
+                <ol>
+                {% for comment in obj_recipe.comment_set.all  %}
+                    <li>{{ comment.text }}</li>
+
+                {% endfor %}
+                </ol>
+            {% else %}
+                <h3>There are no comments</h3>
+            {% endif %}
+            <form method="post" action="{% url 'comment recipe' obj_recipe.id %}">
+                {% csrf_token %}
+                {{ comment_form }}
+                <div class="buttons-container">
+                    <button class="btn btn-primary mt-2" type="submit">Add comment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

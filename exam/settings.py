@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'recipes'
+    'recipes',
+    'web_framework_softuni',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +130,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     join(BASE_DIR, 'static'),
 )
+STATIC_ROOT = '/tmp/static'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = join(BASE_DIR, 'media')

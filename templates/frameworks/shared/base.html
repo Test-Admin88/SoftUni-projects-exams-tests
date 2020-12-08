@@ -1,0 +1,34 @@
+{#4 when u want to add css load static#}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+{#   2 u can add block content in diff places, making the title differen for example on the diff pags #}
+    <title>{% block site_title %}My site {% endblock %}</title>
+
+{#3 adding css to all; they will just inherit#}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    {#    4. also add link for the statics for the css files #}
+    <link rel="stylesheet" href="{% static 'frameworks/base.css' %}">
+
+{#5 adding styles, priority is no issue#}
+    {% block styles %}{% endblock %}
+
+
+</head>
+<body>
+
+{#6 with include we say place this part from there here#}
+{#we take some stuff and place it there, with extend we leave the heir placeholders to fill with whatever  #}
+{% include 'frameworks/partials/navigation.html' %}
+
+{# 1 this is block with name site_content then u go to index and user extend#}
+{% block site_content %}
+    Default site content
+{% endblock %}
+</body>
+</html>

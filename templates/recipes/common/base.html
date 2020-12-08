@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    {% block styles %}{% endblock %}
+
+{#    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">#}
+{#    <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>#}
+    <title>Recipes</title>
+</head>
+<body>
+{% include 'recipes/common/navigation.html' %}
+{% block site_content %}{% endblock %}
+</body>
+</html>

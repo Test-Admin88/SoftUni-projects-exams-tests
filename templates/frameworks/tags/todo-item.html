@@ -1,0 +1,9 @@
+<div> {# this is for 11 inclusion tag #}
+    <h2>All todos: {{ todos_count }}</h2> {# 12 count comes from the context #}
+    {% if todo.is_done %}
+        <strong class="text-success">{{ todo.text|upper }}</strong> {# 9 filter |upper - result will be with upper #}
+    {% else %}
+        <strong class="text-danger">{{ todo.text|upper }}</strong>
+    {% endif %}
+    {{ todo.description }}
+</div>

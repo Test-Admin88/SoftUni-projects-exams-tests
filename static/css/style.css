@@ -101,6 +101,7 @@ div.buttons-container {
     margin: 10px;
 }
 
+
 div.buttons-container .button,
 input[type="submit"] {
     padding: 10px;
@@ -121,10 +122,12 @@ input[type="submit"] {
     background: #d38226;
 }
 
+
 div.buttons-container .button.edit:hover,
 input[type="submit"]:hover {
     background: #e78f2a;
 }
+
 
 div.buttons-container .button.detail {
     background: #496d95;
